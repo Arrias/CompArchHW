@@ -3,8 +3,6 @@
 #include "Cache/Cache.h"
 #include "Operative/Operative.h"
 
-using namespace std;
-
 const unsigned L1_associativity = 4;
 const unsigned L1_volume = 32 * 1024;
 const unsigned L1_row_size = 64;
@@ -52,14 +50,14 @@ void f(double w) {
 }
 
 int main() {
-    cout.setf(ios::fixed);
-    cout.precision(10);
+    std::cout.setf(std::ios::fixed);
+    std::cout.precision(10);
 
-    double w = 13.0;
+    double w = 239.0;
     f(w);
 
-    cout << "L1's percent is: " << L1.getPercent() << endl;
-    cout << "L2's percent is: " << L2.getPercent() << endl;
+    std::cout << "L1's percent is: " << L1.getPercent() << std::endl;
+    std::cout << "L2's percent is: " << L2.getPercent() << std::endl;
 
     L1.reset_cache();
     L2.reset_cache();

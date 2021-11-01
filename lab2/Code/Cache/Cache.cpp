@@ -56,6 +56,7 @@ double Cache::getValue(address_type address) {
     auto hv = haveValue(address);
     total_misses += !hv.first;
 
+    data[hv.second].old = total_requests;
     return data[hv.second].values[number];
 }
 
@@ -65,6 +66,7 @@ void Cache::setValue(address_type address, double value) {
     auto hv = haveValue(address);
     total_misses += !hv.first;
 
+    data[hv.second].old = total_requests;
     data[hv.second].values[number] = value;
 }
 
