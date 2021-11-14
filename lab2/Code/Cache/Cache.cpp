@@ -9,10 +9,7 @@ Cache::Cache(unsigned int associativity, unsigned int sz, unsigned int row_size,
 
 void Cache::resetRow(unsigned int row) {
     address_type full_address = (data[row].row_tag * way_size + (row % way_size)) * row_size;
-    for (double &i: data[row].values) {
-        next_loader->setValue(full_address, i);
-        full_address += sizeof(double);
-    }
+    next_loader->setRow(full_address, data[row].values);
 }
 
 std::pair<bool, int> Cache::haveValue(address_type address) {
@@ -42,11 +39,10 @@ std::pair<bool, int> Cache::haveValue(address_type address) {
     data[oldest_row].row_tag = address_tag;
     address_type full_address = address * row_size;
 
-    for (double &i: data[oldest_row].values) {
-        i = next_loader->getValue(full_address);
-        full_address += sizeof(double);
+    auto new_mem = next_loader->getRow(full_address);
+    for (int i = 0; i < data[oldest_row].values.size(); ++i) {
+        data[oldest_row].values[i] = new_mem[i];
     }
-
     return std::make_pair(false, oldest_row);
 }
 
@@ -80,6 +76,22 @@ void Cache::reset_cache() {
 double Cache::getPercent() {
     if (!total_requests) return 100.0;
     return 100.0 * (double) (total_requests - total_misses) / total_requests;
+}
+
+std::vector<double> Cache::getRow(address_type address) {
+    ++total_requests;
+    auto hv = haveValue(address);
+    total_misses += !hv.first;
+
+    return data[hv.second].values;
+}
+
+void Cache::setRow(address_type address, std::vector<double> new_row) {
+    ++total_requests;
+    auto hv = haveValue(address);
+
+    total_misses += !hv.first;
+    data[hv.second].values = new_row;
 }
 
 

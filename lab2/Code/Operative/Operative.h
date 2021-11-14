@@ -15,6 +15,10 @@ struct Operative : public Loader {
 
     void setValue(address_type address, double value) override;
 
+    std::vector<double> getRow(address_type address) override;
+
+    void setRow(address_type address, std::vector<double> new_row) override;
+
     Operative();
 };
 

@@ -34,8 +34,9 @@ enum ids {
 // тестируемая функция
 void f(double w) {
     for (unsigned int i = 0; i < size; ++i) {
-        double temp = getValue(xx, i) * w + getValue(x, i);
-        setValue(x, i, temp);
+        double w1 = getValue(xx, i) * w;
+        double w2 = getValue(x, i);
+        setValue(x, i, w1 + w2);
     }
 
     for (unsigned int i = 0; i < size; ++i) {
@@ -61,5 +62,6 @@ int main() {
 
     L1.reset_cache();
     L2.reset_cache();
+
     return 0;
 }

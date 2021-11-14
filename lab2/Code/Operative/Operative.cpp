@@ -26,3 +26,20 @@ Operative::Operative() {
         }
     }
 }
+
+std::vector<double> Operative::getRow(address_type address) {
+    std::vector<double> ret(8);
+    unsigned i, j;
+    takePosition(address, i, j);
+    for (int k = j; k < j + ret.size(); ++k)
+        ret[k - j] = ar[i][k];
+    return ret;
+}
+
+void Operative::setRow(address_type address, std::vector<double> new_row) {
+    unsigned i, j;
+    takePosition(address, i, j);
+    for (int k = j; k < j + new_row.size(); ++k) {
+        ar[i][k] = new_row[k - j];
+    }
+}
