@@ -3,5 +3,5 @@ project(code)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(code src/parser.cpp src/bitset32.cpp  main.cpp)
+add_executable(code src/parser.cpp src/bitset32.cpp src/main.cpp)
 include_directories("include")

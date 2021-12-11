@@ -52,7 +52,7 @@
 			[
 				{
 					"backtrace" : 2,
-					"path" : "/home/arrias/Документы/АКС лабы/lab3/code/include"
+					"path" : "/home/arrias/Документы/АКС/lab3/code/include"
 				}
 			],
 			"language" : "CXX",
@@ -124,7 +124,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "main.cpp",
+			"path" : "src/main.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

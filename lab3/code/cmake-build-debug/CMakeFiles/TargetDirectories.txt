@@ -1,3 +1,3 @@
-/home/arrias/Документы/АКС лабы/lab3/code/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/arrias/Документы/АКС лабы/lab3/code/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/arrias/Документы/АКС лабы/lab3/code/cmake-build-debug/CMakeFiles/code.dir
+/home/arrias/Документы/АКС/lab3/code/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/arrias/Документы/АКС/lab3/code/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/arrias/Документы/АКС/lab3/code/cmake-build-debug/CMakeFiles/code.dir

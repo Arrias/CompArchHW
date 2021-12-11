@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/arrias/Документы/АКС лабы/lab3/code/cmake-build-debug"
+			"value" : "/home/arrias/Документы/АКС/lab3/code/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -579,7 +579,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/arrias/Документы/АКС лабы/lab3/code"
+			"value" : "/home/arrias/Документы/АКС/lab3/code"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1111,7 +1111,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/arrias/Документы/АКС лабы/lab3/code/cmake-build-debug"
+			"value" : "/home/arrias/Документы/АКС/lab3/code/cmake-build-debug"
 		},
 		{
 			"name" : "code_IS_TOP_LEVEL",
@@ -1135,7 +1135,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/arrias/Документы/АКС лабы/lab3/code"
+			"value" : "/home/arrias/Документы/АКС/lab3/code"
 		}
 	],
 	"kind" : "cache",

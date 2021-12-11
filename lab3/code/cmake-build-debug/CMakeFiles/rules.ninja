@@ -42,7 +42,7 @@ rule CXX_EXECUTABLE_LINKER__code_Debug
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /snap/clion/175/bin/cmake/linux/bin/cmake --regenerate-during-build -S"/home/arrias/Документы/АКС лабы/lab3/code" -B"/home/arrias/Документы/АКС лабы/lab3/code/cmake-build-debug"
+  command = /snap/clion/175/bin/cmake/linux/bin/cmake --regenerate-during-build -S/home/arrias/Документы/АКС/lab3/code -B/home/arrias/Документы/АКС/lab3/code/cmake-build-debug
   description = Re-running CMake...
   generator = 1
 
