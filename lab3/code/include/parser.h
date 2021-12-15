@@ -10,7 +10,9 @@ using std::vector;
 using std::string;
 
 struct Parser {
-    uint8_t *memory_pointer;
+    FILE *memory_pointer;
+    Elf32_Ehdr ehdr;
+    Elf32_Shdr shdr;
 
     struct section {
         int section_index = 0;

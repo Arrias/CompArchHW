@@ -1,11 +1,15 @@
 #include "parser.h"
+#include <iostream>
 
 Parser::Parser(string path) {
-    int fd, i;
-    struct stat st;
-    fd = open(path.c_str(), O_RDONLY);
-    fstat(fd, &st);
-    memory_pointer = (uint8_t *) (mmap(NULL, st.st_size, PROT_READ, MAP_PRIVATE, fd, 0));
+    memory_pointer = fopen(path.c_str(), "rb");
+    if (memory_pointer == nullptr) {
+        std::cout << "File open error\n";
+        exit(0);
+    }
+    fread(&ehdr, sizeof(ehdr), 1, memory_pointer);
+    fseek(memory_pointer, ehdr.e_shoff, SEEK_SET);
+    fread(&shdr, sizeof(shdr), 1, memory_pointer);
 }
 
 vector<string> sections_types = {"SHT_NULL", "SHT_PROGBITS", "SHT_SYMTAB", "SHT_STRTAB", "SHT_RELA", "SHT_HASH", "SHT_DYNAMIC",
@@ -16,27 +20,38 @@ string Parser::get_section_type(int type) {
     return sections_types[type];
 }
 
+#define MAX_SIZE 1500
+char buf[MAX_SIZE];
+
 vector<Parser::section> Parser::get_sections() {
-    Elf32_Ehdr *ehdr = (Elf32_Ehdr *) memory_pointer;
-    Elf32_Shdr *shdr = (Elf32_Shdr *) (memory_pointer + ehdr->e_shoff);
-    int shnum = ehdr->e_shnum;
+    int shnum = ehdr.e_shnum;
+    fseek(memory_pointer, ehdr.e_shoff + sizeof(Elf32_Shdr) * ehdr.e_shstrndx, SEEK_SET);
+    Elf32_Shdr sh_strtab;
+    fread(&sh_strtab, sizeof(Elf32_Shdr), 1, memory_pointer);
+    fseek(memory_pointer, sh_strtab.sh_offset, SEEK_SET);
 
-    Elf32_Shdr *sh_strtab = &shdr[ehdr->e_shstrndx];
-    const char *const sh_strtab_p = (char *) memory_pointer + sh_strtab->sh_offset;
+    vector<section> ret;
 
-    std::vector<Parser::section> ret;
     for (int i = 0; i < shnum; ++i) {
-        Parser::section section;
-        section.section_index = i;
-        section.section_name = std::string(sh_strtab_p + shdr[i].sh_name);
-        section.section_type = get_section_type(shdr[i].sh_type);
-        section.section_addr = shdr[i].sh_addr;
-        section.section_offset = shdr[i].sh_offset;
-        section.section_size = shdr[i].sh_size;
-        section.section_ent_size = shdr[i].sh_entsize;
-        section.section_addr_align = shdr[i].sh_addralign;
+        fseek(memory_pointer, ehdr.e_shoff + sizeof(Elf32_Shdr) * i, SEEK_SET);
+        Elf32_Shdr cur;
+        fread(&cur, sizeof(Elf32_Ehdr), 1, memory_pointer);
+
+        section section;
+
+        fseek(memory_pointer, sh_strtab.sh_offset + cur.sh_name, SEEK_SET);
+        fscanf(memory_pointer, "%s", buf);
+
+        section.section_name = std::string(buf);
+        section.section_type = get_section_type(cur.sh_type);
+        section.section_addr = cur.sh_addr;
+        section.section_offset = cur.sh_offset;
+        section.section_size = cur.sh_size;
+        section.section_ent_size = cur.sh_entsize;
+        section.section_addr_align = cur.sh_addralign;
         ret.push_back(section);
     }
+
     return ret;
 }
 
@@ -76,8 +91,8 @@ uint32_t get_shift(vector<Parser::section> &sections, string section_type, strin
 vector<Parser::symbol> Parser::get_symbols() {
     std::vector<section> secs = get_sections();
 
-    char *sh_strtab_p = (char *) memory_pointer + get_shift(secs, "SHT_STRTAB", ".strtab");
-    char *sh_dynstr_p = (char *) memory_pointer + get_shift(secs, "SHT_STRTAB", ".dynstr");
+    auto strtab_shift = get_shift(secs, "SHT_STRTAB", ".strtab");
+    auto dynstr_shift = get_shift(secs, "SHT_STRTAB", ".dynstr");
 
     vector<symbol> ret;
 
@@ -86,25 +101,32 @@ vector<Parser::symbol> Parser::get_symbols() {
             continue;
 
         auto sz = sec.section_size / sizeof(Elf32_Sym);
-        auto syms_data = (Elf32_Sym *) (memory_pointer + sec.section_offset);
 
         for (int i = 0; i < sz; ++i) {
             Parser::symbol cur_symbol;
             cur_symbol.symbol_num = i;
-            cur_symbol.symbol_value = syms_data[i].st_value;
-            cur_symbol.symbol_size = syms_data[i].st_size;
-            cur_symbol.symbol_type = get_symbol_type(syms_data[i].st_info);
-            cur_symbol.symbol_bind = get_symbol_bind(syms_data[i].st_info);
-            cur_symbol.symbol_visibility = get_symbol_visibility(syms_data[i].st_other);
-            cur_symbol.symbol_index = get_symbol_index(syms_data[i].st_shndx);
+
+            fseek(memory_pointer, sec.section_offset + sizeof(Elf32_Sym) * i, SEEK_SET);
+            Elf32_Sym sym;
+            fread(&sym, sizeof(Elf32_Sym), 1, memory_pointer);
+
+            cur_symbol.symbol_value = sym.st_value;
+            cur_symbol.symbol_size = sym.st_size;
+            cur_symbol.symbol_type = get_symbol_type(sym.st_info);
+            cur_symbol.symbol_bind = get_symbol_bind(sym.st_info);
+            cur_symbol.symbol_visibility = get_symbol_visibility(sym.st_other);
+            cur_symbol.symbol_index = get_symbol_index(sym.st_shndx);
             cur_symbol.symbol_section = sec.section_name;
 
-            if (sec.section_type == "SHT_SYMTAB")
-                cur_symbol.symbol_name = std::string(sh_strtab_p + syms_data[i].st_name);
-
-            if (sec.section_type == "SHT_DYNSYM")
-                cur_symbol.symbol_name = std::string(sh_dynstr_p + syms_data[i].st_name);
-
+            if (sec.section_type == "SHT_SYMTAB") {
+                fseek(memory_pointer, strtab_shift + sym.st_name, SEEK_SET);
+                fscanf(memory_pointer, "%s", buf);
+            }
+            if (sec.section_type == "SHT_DYNSYM") {
+                fseek(memory_pointer, dynstr_shift + sym.st_name, SEEK_SET);
+                fscanf(memory_pointer, "%s", buf);
+            }
+            cur_symbol.symbol_name = std::string(buf);
             ret.push_back(cur_symbol);
         }
     }

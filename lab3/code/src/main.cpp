@@ -33,12 +33,14 @@ int main(int argc, char *argv[]) {
 
     vector<uint8_t> buffer(text_section.section_size);
     for (int i = 0; i < buffer.size(); ++i) {
-        buffer[i] = *(parser.memory_pointer + i + text_section.section_offset);
+        fseek(parser.memory_pointer, i + text_section.section_offset, SEEK_SET);
+        fread(&buffer[i], sizeof(char), 1, parser.memory_pointer);
     }
 
     Stream stream(buffer.begin(), buffer.end());
     auto symtab = parser.get_symbols();
-    int32_t address = ((Elf32_Ehdr *) (parser.memory_pointer))->e_entry;
+
+    int32_t address = parser.ehdr.e_entry;
 
     auto find_mark = [&](uint32_t address) {
         for (auto it = symtab.rbegin(); it != symtab.rend(); ++it) {
@@ -66,13 +68,19 @@ int main(int argc, char *argv[]) {
             }
             fprintf(out, "   ");
             row.addBits(stream.takeN(half));
+            bool finded = false;
             for (auto &instruction: instrucions) {
                 if (instruction.accept(row)) {
+                    finded = true;
                     fprintf(out, "%s", instruction.name.c_str());
                     instruction.extract_args(row, out);
+                    break;
                 }
             }
-        } else { // укороченные команды
+            if (!finded) {
+                fprintf(out, "unknown command");
+            }
+        } else {
             fprintf(out, "unknown command");
         }
 
