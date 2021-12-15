@@ -24,7 +24,7 @@ vector<Parser::section> Parser::get_sections() {
     Elf32_Shdr *sh_strtab = &shdr[ehdr->e_shstrndx];
     const char *const sh_strtab_p = (char *) memory_pointer + sh_strtab->sh_offset;
 
-    std::vector<Parser::section> sections;
+    std::vector<Parser::section> ret;
     for (int i = 0; i < shnum; ++i) {
         Parser::section section;
         section.section_index = i;
@@ -35,9 +35,9 @@ vector<Parser::section> Parser::get_sections() {
         section.section_size = shdr[i].sh_size;
         section.section_ent_size = shdr[i].sh_entsize;
         section.section_addr_align = shdr[i].sh_addralign;
-        sections.push_back(section);
+        ret.push_back(section);
     }
-    return sections;
+    return ret;
 }
 
 vector<string> symbol_types = {"NOTYPE", "OBJECT", "FUNC", "SECTION", "FILE", "TLS", "NUM", "LOOS", "HIOS"};

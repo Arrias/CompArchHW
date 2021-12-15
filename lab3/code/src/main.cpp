@@ -82,6 +82,7 @@ int main(int argc, char *argv[]) {
 
     fprintf(out, "\n");
     print_symtab(symtab, out);
+    fclose(out);
     return 0;
 }
 

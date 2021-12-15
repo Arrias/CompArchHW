@@ -225,4 +225,10 @@ vector<RV32_instrucion> instrucions = {
         RV32_instrucion{"remu", {checks[2], {1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0}}, {rd, rs1, rs2}}
 };
 
+vector<int> checks_rvc[3] = {
+        {0, 1, 2, 3, 4, 5, 6}, //type-u, type-uj
+        {0, 1, 2, 3, 4, 5, 6, 12, 13, 14}, //type-i, type-sb, type-s
+        {0, 1, 2, 3, 4, 5, 6, 12, 13, 14, 25, 26, 27, 28, 29, 30, 31} //type-r
+};
+
 #endif //CODE_RV32_INSTRUCTION_H
