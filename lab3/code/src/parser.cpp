@@ -35,7 +35,7 @@ vector<Parser::section> Parser::get_sections() {
     for (int i = 0; i < shnum; ++i) {
         fseek(memory_pointer, ehdr.e_shoff + sizeof(Elf32_Shdr) * i, SEEK_SET);
         Elf32_Shdr cur;
-        fread(&cur, sizeof(Elf32_Ehdr), 1, memory_pointer);
+        fread(&cur, sizeof(Elf32_Shdr), 1, memory_pointer);
 
         section section;
 

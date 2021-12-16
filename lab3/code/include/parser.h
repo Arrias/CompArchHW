@@ -22,7 +22,7 @@ struct Parser {
         int section_size;
         int section_ent_size;
         int section_addr_align;
-    };
+    } __attribute__((packed));
 
     struct symbol {
         string symbol_index;
@@ -34,7 +34,7 @@ struct Parser {
         string symbol_visibility;
         string symbol_name;
         string symbol_section;
-    };
+    } __attribute__((packed));
 
     section &find_section_by_name(vector<Parser::section> &sections, const string &name);
 

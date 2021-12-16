@@ -37,7 +37,7 @@ typedef struct elf32_hdr {
     Elf32_Half e_shentsize;
     Elf32_Half e_shnum;
     Elf32_Half e_shstrndx;
-} Elf32_Ehdr;
+} __attribute__((packed)) Elf32_Ehdr;
 
 typedef struct elf32_shdr {
     Elf32_Word sh_name;
@@ -50,7 +50,7 @@ typedef struct elf32_shdr {
     Elf32_Word sh_info;
     Elf32_Word sh_addralign;
     Elf32_Word sh_entsize;
-} Elf32_Shdr;
+} __attribute__((packed)) Elf32_Shdr;
 
 typedef struct elf32_sym {
     Elf32_Word st_name;
@@ -59,6 +59,6 @@ typedef struct elf32_sym {
     unsigned char st_info;
     unsigned char st_other;
     Elf32_Half st_shndx;
-} Elf32_Sym;
+} __attribute__((packed)) Elf32_Sym;
 
 #endif //CODE_ELF_HEADERS_H
