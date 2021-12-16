@@ -15,7 +15,8 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -30,7 +31,8 @@
 					"name" : "code",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -41,6 +43,13 @@
 					"id" : "code::@6890427a1f51a3e7e1df",
 					"jsonFile" : "target-code-Debug-ced03fccc87cf0ca5867.json",
 					"name" : "code",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "experiment::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-experiment-Debug-965cfb2585e5e34915f0.json",
+					"name" : "experiment",
 					"projectIndex" : 0
 				}
 			]

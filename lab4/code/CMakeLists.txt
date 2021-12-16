@@ -11,3 +11,4 @@ if (OPENMP_FOUND)
 endif()
 
 add_executable(code main.cpp)
+add_executable(experiment experiment.cpp)

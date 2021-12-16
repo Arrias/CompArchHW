@@ -132,14 +132,6 @@
 			"path" : "/snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeParseImplicitLinkInfo.cmake"
 		},
 		{
-			"isGenerated" : true,
-			"path" : "cmake-build-debug/CMakeFiles/FindOpenMP/OpenMPTryFlag.c"
-		},
-		{
-			"isGenerated" : true,
-			"path" : "cmake-build-debug/CMakeFiles/FindOpenMP/OpenMPTryFlag.cpp"
-		},
-		{
 			"isCMake" : true,
 			"isExternal" : true,
 			"path" : "/snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/FindPackageHandleStandardArgs.cmake"
@@ -148,14 +140,6 @@
 			"isCMake" : true,
 			"isExternal" : true,
 			"path" : "/snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/FindPackageMessage.cmake"
-		},
-		{
-			"isGenerated" : true,
-			"path" : "cmake-build-debug/CMakeFiles/FindOpenMP/OpenMPCheckVersion.c"
-		},
-		{
-			"isGenerated" : true,
-			"path" : "cmake-build-debug/CMakeFiles/FindOpenMP/OpenMPCheckVersion.cpp"
 		}
 	],
 	"kind" : "cmakeFiles",

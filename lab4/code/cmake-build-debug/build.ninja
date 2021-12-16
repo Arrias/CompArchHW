@@ -64,6 +64,37 @@ build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
 build edit_cache: phony CMakeFiles/edit_cache.util
 
 # =============================================================================
+# Object build statements for EXECUTABLE target experiment
+
+
+#############################################
+# Order-only phony target for experiment
+
+build cmake_object_order_depends_target_experiment: phony || CMakeFiles/experiment.dir
+
+build CMakeFiles/experiment.dir/experiment.cpp.o: CXX_COMPILER__experiment_Debug /home/arrias/Документы/АКС/lab4/code/experiment.cpp || cmake_object_order_depends_target_experiment
+  DEP_FILE = CMakeFiles/experiment.dir/experiment.cpp.o.d
+  FLAGS = -fopenmp -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles/experiment.dir
+  OBJECT_FILE_DIR = CMakeFiles/experiment.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target experiment
+
+
+#############################################
+# Link the executable experiment
+
+build experiment: CXX_EXECUTABLE_LINKER__experiment_Debug CMakeFiles/experiment.dir/experiment.cpp.o
+  FLAGS = -fopenmp -g
+  OBJECT_DIR = CMakeFiles/experiment.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = experiment
+  TARGET_PDB = experiment.dbg
+
+# =============================================================================
 # Object build statements for EXECUTABLE target code
 
 
@@ -105,7 +136,7 @@ build code: CXX_EXECUTABLE_LINKER__code_Debug CMakeFiles/code.dir/main.cpp.o
 #############################################
 # Folder: /home/arrias/Документы/АКС/lab4/code/cmake-build-debug
 
-build all: phony code
+build all: phony experiment code
 
 # =============================================================================
 # Built-in targets
@@ -114,14 +145,14 @@ build all: phony code
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | ../CMakeLists.txt /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeCInformation.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeCXXInformation.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeCommonLanguageInclude.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeGenericSystem.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeInitializeConfigs.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeLanguageInformation.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeParseImplicitLinkInfo.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeSystemSpecificInformation.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeSystemSpecificInitialize.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/CMakeCommonCompilerMacros.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/GNU-C.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/GNU-CXX.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/GNU.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/FindOpenMP.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/FindPackageHandleStandardArgs.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/FindPackageMessage.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux-GNU-C.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux-GNU-CXX.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux-GNU.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.21.1/CMakeCCompiler.cmake CMakeFiles/3.21.1/CMakeCXXCompiler.cmake CMakeFiles/3.21.1/CMakeSystem.cmake CMakeFiles/FindOpenMP/OpenMPCheckVersion.c CMakeFiles/FindOpenMP/OpenMPCheckVersion.cpp CMakeFiles/FindOpenMP/OpenMPTryFlag.c CMakeFiles/FindOpenMP/OpenMPTryFlag.cpp
+build build.ninja: RERUN_CMAKE | ../CMakeLists.txt /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeCInformation.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeCXXInformation.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeCommonLanguageInclude.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeGenericSystem.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeInitializeConfigs.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeLanguageInformation.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeParseImplicitLinkInfo.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeSystemSpecificInformation.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeSystemSpecificInitialize.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/CMakeCommonCompilerMacros.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/GNU-C.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/GNU-CXX.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/GNU.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/FindOpenMP.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/FindPackageHandleStandardArgs.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/FindPackageMessage.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux-GNU-C.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux-GNU-CXX.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux-GNU.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.21.1/CMakeCCompiler.cmake CMakeFiles/3.21.1/CMakeCXXCompiler.cmake CMakeFiles/3.21.1/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build ../CMakeLists.txt /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeCInformation.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeCXXInformation.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeCommonLanguageInclude.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeGenericSystem.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeInitializeConfigs.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeLanguageInformation.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeParseImplicitLinkInfo.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeSystemSpecificInformation.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeSystemSpecificInitialize.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/CMakeCommonCompilerMacros.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/GNU-C.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/GNU-CXX.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/GNU.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/FindOpenMP.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/FindPackageHandleStandardArgs.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/FindPackageMessage.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux-GNU-C.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux-GNU-CXX.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux-GNU.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.21.1/CMakeCCompiler.cmake CMakeFiles/3.21.1/CMakeCXXCompiler.cmake CMakeFiles/3.21.1/CMakeSystem.cmake CMakeFiles/FindOpenMP/OpenMPCheckVersion.c CMakeFiles/FindOpenMP/OpenMPCheckVersion.cpp CMakeFiles/FindOpenMP/OpenMPTryFlag.c CMakeFiles/FindOpenMP/OpenMPTryFlag.cpp: phony
+build ../CMakeLists.txt /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeCInformation.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeCXXInformation.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeCommonLanguageInclude.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeGenericSystem.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeInitializeConfigs.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeLanguageInformation.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeParseImplicitLinkInfo.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeSystemSpecificInformation.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/CMakeSystemSpecificInitialize.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/CMakeCommonCompilerMacros.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/GNU-C.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/GNU-CXX.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/GNU.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/FindOpenMP.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/FindPackageHandleStandardArgs.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/FindPackageMessage.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux-GNU-C.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux-GNU-CXX.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux-GNU.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux.cmake /snap/clion/175/bin/cmake/linux/share/cmake-3.21/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.21.1/CMakeCCompiler.cmake CMakeFiles/3.21.1/CMakeCXXCompiler.cmake CMakeFiles/3.21.1/CMakeSystem.cmake: phony
 
 
 #############################################
