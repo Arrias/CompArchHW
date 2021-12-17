@@ -72,7 +72,7 @@ int main(int argc, char *argv[]) {
             for (auto &instruction: instrucions) {
                 if (instruction.accept(row)) {
                     finded = true;
-                    fprintf(out, "%s", instruction.name.c_str());
+                    fprintf(out, "%s ", instruction.name.c_str());
                     instruction.extract_args(row, out);
                     break;
                 }
