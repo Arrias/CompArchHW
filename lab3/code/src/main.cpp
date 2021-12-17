@@ -62,7 +62,7 @@ int main(int argc, char *argv[]) {
         if (row[0] && row[1]) {
             fprintf(out, "%08x", address);
             if (fl) {
-                fprintf(out, "%10s", mrk.c_str());
+                fprintf(out, "%10s:", mrk.c_str());
             } else {
                 fprintf(out, "%10s", "");
             }
