@@ -41,9 +41,12 @@ struct Argument {
             fprintf(out, "%s", registers_names[result.get_bits()].c_str());
         } else {
             int32_t res = result.get_bits();
-            if (result[result.get_size() - 1]) {
-                res -= (1 << (result.get_size()));
+            if (result[11]) {
+                res -= (1 << 12);
             }
+//            if (result[result.get_size() - 1]) {
+//                res -= (1 << (result.get_size()));
+//            }
             fprintf(out, "%d", res);
         }
     }

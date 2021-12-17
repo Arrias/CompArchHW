@@ -64,7 +64,7 @@ int main(int argc, char *argv[]) {
             if (fl) {
                 fprintf(out, "%10s:", mrk.c_str());
             } else {
-                fprintf(out, "%10s", "");
+                fprintf(out, "%11s", "");
             }
             fprintf(out, "   ");
             row.addBits(stream.takeN(half));
